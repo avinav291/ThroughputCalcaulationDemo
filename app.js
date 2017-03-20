@@ -44,12 +44,12 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.listen(3000);
 
 
-// app.get('/', function(req, res) {
-//   res.render('index', { title: 'Express' });
-// });
+app.get('/', function(req, res) {
+  res.render('index', { title: 'Express' });
+});
 
 //API Routing
-console.log("Hi")
+console.log("Hi");
 app.use('/api', api);
 
 // app.use('/', index);
