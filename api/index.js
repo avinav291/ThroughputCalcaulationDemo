@@ -5,7 +5,7 @@ var updateCounter = require('./updateCounter');
 // var addCounter = require('./addCounter');
 // var sendCounter = require('sendCounter');
 // var sendAirports = require('./sendAirports');
-// var sendCarriers = require('./sendCarriers');
+var sendCarriers = require('./sendCarriers');
 var sendQueueData = require('./sendQueueData');
 
 // api.post('updateCounter', function(req, res){
@@ -20,6 +20,11 @@ api.post('/sendQueueData', function(req, res){
 api.post('/updateCounter', function(req, res){
    console.log("updateCounter");
    updateCounter(req, res);
+});
+
+api.get('/sendCarriers', function(req, res){
+   console.log("sending Carriers");
+   sendCarriers(req, res);
 });
 
 module.exports = api;
