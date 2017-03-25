@@ -36,7 +36,12 @@ app.use(cookieParser());
 //Database
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/test');
+// mongoose.connect('mongodb://localhost:27017/test');
+
+var uri = "mongodb://username:password@ds137360.mlab.com:37360/throughputdemo";
+var connect = function(callback){
+  mongoose.connect(uri, callback);
+};
 //
 //Static Directories
 app.use(express.static(path.join(__dirname, 'views')));
