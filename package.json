@@ -6,8 +6,8 @@
     "start": "node app.js"
   },
   "engine": {
-  "node": "*",
-  "npm": "*"
+    "node": "*",
+    "npm": "*"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "jade": "~1.11.0",
     "mongoose": "^4.9.1",
     "morgan": "~1.7.0",
+    "object-assign": "^4.1.1",
     "serve-favicon": "~2.3.2"
   }
 }

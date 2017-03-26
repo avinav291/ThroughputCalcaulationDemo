@@ -8,6 +8,7 @@ var api = require('./api');
 var mongoose = require('mongoose');
 var firebase = require('firebase');
 
+Object.assign=require('object-assign')
 // var index = require('./routes/index');
 
 var app = express();
@@ -135,21 +136,21 @@ app.use('/api', api);
 // });
 
 
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
+// function normalizePort(val) {
+//   var port = parseInt(val, 10);
+//
+//   if (isNaN(port)) {
+//     // named pipe
+//     return val;
+//   }
+//
+//   if (port >= 0) {
+//     // port number
+//     return port;
+//   }
+//
+//   return false;
+// }
 //
 
 
