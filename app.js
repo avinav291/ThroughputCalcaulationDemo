@@ -13,8 +13,8 @@ var firebase = require('firebase');
 var app = express();
 
 /* Get the port and set in express */
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+// var port = normalizePort(process.env.PORT || '3000');
+// app.set('port', port);
 
 var server = require("http").createServer(app);
 console.log('Server Started');
