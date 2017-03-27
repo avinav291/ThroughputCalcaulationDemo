@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var api = require('./api');
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var firebase = require('firebase');
 
 // var index = require('./routes/index');
@@ -33,10 +33,10 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
 
-//Database
-var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/test');
+// //Database
+// var mongoose = require('mongoose');
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost:27017/test');
 
 // var uri = "mongodb://username:password@ds137360.mlab.com:37360/throughputdemo";
 // var connect = function(callback){

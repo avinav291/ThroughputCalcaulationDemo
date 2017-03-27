@@ -12,19 +12,19 @@ var sendQueueData = require('./sendQueueData');
 //     updateCounter(req, res);
 // });
 
-api.post('/sendQueueData', function(req, res){
-   console.log("Sending Queue Data on Request");
-   sendQueueData(req, res);
-});
+// api.post('/sendQueueData', function(req, res){
+//    console.log("Sending Queue Data on Request");
+//    sendQueueData(req, res);
+// });
 
 api.post('/updateCounter', function(req, res){
    console.log("updateCounter");
    updateCounter(req, res);
 });
 
-api.get('/sendCarriers', function(req, res){
-   console.log("sending Carriers");
-   sendCarriers(req, res);
-});
+// api.get('/sendCarriers', function(req, res){
+//    console.log("sending Carriers");
+//    sendCarriers(req, res);
+// });
 
 module.exports = api;

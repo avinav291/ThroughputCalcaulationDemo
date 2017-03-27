@@ -4,7 +4,7 @@
 //
 
 // var Counter = require('../model/counter');
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var firebase = require('firebase')
 
 //API Requirements
