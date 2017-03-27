@@ -5,6 +5,7 @@
 
 var Counter = require('../model/counter');
 var mongoose = require('mongoose');
+var firebase = require('firebase')
 
 //API Requirements
 //airportName:  Name of the Airport
@@ -17,6 +18,11 @@ module.exports = function (req, res) {
     var counterCount = req.body.counterCount;
     var throughput = req.body.throughput;
 
+    firebase.database().ref(airportName+'/'+carrierName+'/'+counterNumber).set({
+        counterCount:counterCount,
+        throughput:throughput
+    })
+    
 
     Counter.findOne({airportName:airportName, carrierName:carrierName}, function (err, counter) {
 

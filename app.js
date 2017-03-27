@@ -8,14 +8,13 @@ var api = require('./api');
 var mongoose = require('mongoose');
 var firebase = require('firebase');
 
-Object.assign=require('object-assign')
 // var index = require('./routes/index');
 
 var app = express();
 
 /* Get the port and set in express */
-// var port = normalizePort(process.env.PORT || '3000');
-// app.set('port', port);
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
 var server = require("http").createServer(app);
 console.log('Server Started');
@@ -34,64 +33,16 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
 
-// //Database
-// var mongoose = require('mongoose');
-// mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost:27017/test');
+//Database
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/test');
 
 // var uri = "mongodb://username:password@ds137360.mlab.com:37360/throughputdemo";
 // var connect = function(callback){
 //   mongoose.connect(uri, callback);
 // };
 
-//NEW DB Changes
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-    mongoURLLabel = "";
-
-if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
-    var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
-        mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
-        mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
-        mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-        mongoPassword = process.env[mongoServiceName + '_PASSWORD']
-    mongoUser = process.env[mongoServiceName + '_USER'];
-
-    if (mongoHost && mongoPort && mongoDatabase) {
-        mongoURLLabel = mongoURL = 'mongodb://';
-        if (mongoUser && mongoPassword) {
-            mongoURL += mongoUser + ':' + mongoPassword + '@';
-        }
-        // Provide UI label that excludes user id and pw
-        mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
-        mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-
-    }
-}
-var db = null,
-    dbDetails = new Object();
-
-var initDb = function(callback) {
-    if (mongoURL == null) return;
-
-    var mongodb = require('mongodb');
-    if (mongodb == null) return;
-
-    mongoose.connect(mongoURL, function(err, conn) {
-        if (err) {
-            callback(err);
-            return;
-        }
-
-        db = conn;
-        dbDetails.databaseName = db.databaseName;
-        dbDetails.url = mongoURLLabel;
-        dbDetails.type = 'MongoDB';
-
-        console.log('Connected to MongoDB at: %s', mongoURL);
-    });
-};
 
 //
 //Static Directories
@@ -112,16 +63,20 @@ app.use('/api', api);
 
 // server.listen(port);
 
-//FIREBASE HANDLER
+// FIREBASE HANDLER
 // Initialize Firebase
-// var config = {
-//   apiKey: "AIzaSyCb63mivmhrLKbppO-C4_Y1l2hpBKor5vU",
-//   authDomain: "throughputcalc.firebaseapp.com",
-//   databaseURL: "https://throughputcalc.firebaseio.com",
-//   storageBucket: "throughputcalc.appspot.com",
-//   messagingSenderId: "262341843633"
-// };
-// firebase.initializeApp(config);
+var config = {
+  apiKey: "AIzaSyCb63mivmhrLKbppO-C4_Y1l2hpBKor5vU",
+  authDomain: "throughputcalc.firebaseapp.com",
+  databaseURL: "https://throughputcalc.firebaseio.com",
+  storageBucket: "throughputcalc.appspot.com",
+  messagingSenderId: "262341843633"
+};
+firebase.initializeApp(config);
+
+const dbrefObj= firebase.database().ref()
+dbrefObj.on('value', snap=>console.log(snap.val()))
+
 //
 //
 // // error handler
@@ -136,22 +91,22 @@ app.use('/api', api);
 // });
 
 
-// function normalizePort(val) {
-//   var port = parseInt(val, 10);
-//
-//   if (isNaN(port)) {
-//     // named pipe
-//     return val;
-//   }
-//
-//   if (port >= 0) {
-//     // port number
-//     return port;
-//   }
-//
-//   return false;
-// }
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
 //
 
 
-module.exports = app;
+// module.exports = app;
