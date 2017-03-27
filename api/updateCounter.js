@@ -22,7 +22,9 @@ module.exports = function (req, res) {
         counterCount:counterCount,
         throughput:throughput
     })
-    
+
+    res.status(200)
+    res.send('Updated')
 
     // Counter.findOne({airportName:airportName, carrierName:carrierName}, function (err, counter) {
 
