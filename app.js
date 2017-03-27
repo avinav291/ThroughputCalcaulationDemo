@@ -91,22 +91,22 @@ dbrefObj.on('value', snap=>console.log(snap.val()))
 // });
 
 
-// function normalizePort(val) {
-//   var port = parseInt(val, 10);
+function normalizePort(val) {
+  var port = parseInt(val, 10);
 
-//   if (isNaN(port)) {
-//     // named pipe
-//     return val;
-//   }
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
 
-//   if (port >= 0) {
-//     // port number
-//     return port;
-//   }
+  if (port >= 0) {
+    // port number
+    return port;
+  }
 
-//   return false;
-// }
-//
+  return false;
+}
+
 
 
 // module.exports = app;
